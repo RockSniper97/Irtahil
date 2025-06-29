@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>Irtahil Smart Tourism Platform</title>
+    <style>
+      /* Ensure proper viewport behavior */
+      html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+      }
+      
+      /* Force responsive behavior immediately */
+      @media screen and (max-width: 768px) {
+        * {
+          -webkit-text-size-adjust: 100%;
+          -ms-text-size-adjust: 100%;
+        }
+      }
+      
+      /* Prevent zoom on input focus */
+      input, select, textarea {
+        font-size: 16px !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Force viewport recalculation on load
+      window.addEventListener('load', function() {
+        // Trigger a resize event to ensure responsive styles are applied
+        window.dispatchEvent(new Event('resize'));
+        
+        // Force reflow
+        document.body.offsetHeight;
+        
+        // Additional viewport fix for mobile browsers
+        if (window.innerWidth <= 768) {
+          document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+        }
+      });
+      
+      // Handle orientation changes
+      window.addEventListener('orientationchange', function() {
+        setTimeout(function() {
+          window.dispatchEvent(new Event('resize'));
+          if (window.innerWidth <= 768) {
+            document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+          }
+        }, 100);
+      });
+      
+      // Handle resize events
+      window.addEventListener('resize', function() {
+        if (window.innerWidth <= 768) {
+          document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+        }
+      });
+    </script>
+  </body>
+</html>
